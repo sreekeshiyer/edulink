@@ -1,0 +1,29 @@
+{
+  "name": "edulink",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.4",
+    "@supabase/supabase-js": "^1.25.2",
+    "bcrypt": "^5.0.1",
+    "cookie": "^0.4.1",
+    "jsonwebtoken": "^8.5.1",
+    "next": "11.1.2",
+    "plyr-react": "^3.2.0",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-rating-stars-component": "^2.2.0",
+    "react-toastify": "^8.0.3",
+    "sharp": "^0.29.2"
+  },
+  "devDependencies": {
+    "eslint": "7.32.0",
+    "eslint-config-next": "11.1.2"
+  }
+}
