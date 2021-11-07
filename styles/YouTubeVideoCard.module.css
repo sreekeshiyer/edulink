@@ -1,0 +1,25 @@
+.video_card {
+    width: 400px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border-radius: 2px;
+    background: rgb(241, 241, 241);
+}
+
+.video_card h4 {
+    margin: 0.5rem;
+    font-size: 0.9rem;
+}
+.video_card p {
+    padding: 3px;
+    margin: 3px;
+    font-size: 0.7rem;
+}
+
+@media (max-width: 1000px) {
+    .video_card {
+        width: 320px;
+    }
+}

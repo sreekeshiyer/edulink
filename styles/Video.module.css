@@ -1,0 +1,28 @@
+.video {
+    width: 100%;
+}
+
+.video iframe {
+    width: 58vw;
+    height: 50vh;
+}
+
+@media (max-width: 880px) {
+    .video {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .video iframe {
+        width: 533px;
+        height: 300px;
+    }
+}
+
+@media (min-width: 1420px) {
+    .video iframe {
+        width: 1050px;
+        height: 600px;
+    }
+}
