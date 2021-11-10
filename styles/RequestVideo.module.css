@@ -43,4 +43,8 @@
     .card h1 {
         text-align: center;
     }
+
+    .card {
+        width: 85vw;
+    }
 }
