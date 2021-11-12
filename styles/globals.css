@@ -68,7 +68,8 @@ a {
 
 .video-player-grid {
     display: grid;
-    grid-template-columns: 6.5fr 3.5fr;
+    grid-template-columns: 7fr 3fr;
+    justify-items: stretch;
 }
 
 .btn {

@@ -1,7 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import { NEXT_URL } from "../config/index";
-
+import { NEXT_URL, api_token } from "../config/index";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
@@ -21,6 +20,7 @@ export const AuthProvider = ({ children }) => {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                Authorization: `Bearer ${api_token}`,
             },
             body: JSON.stringify(user),
         });
@@ -43,6 +43,7 @@ export const AuthProvider = ({ children }) => {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                Authorization: `Bearer ${api_token}`,
             },
             body: JSON.stringify({
                 email: loginEmail,
@@ -66,6 +67,10 @@ export const AuthProvider = ({ children }) => {
     const logout = async () => {
         const res = await fetch(`${NEXT_URL}/api/logout`, {
             method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${api_token}`,
+            },
         });
 
         if (res.ok) {
@@ -77,7 +82,13 @@ export const AuthProvider = ({ children }) => {
     // Check if User is log in
 
     const checkUserLoggedIn = async () => {
-        const res = await fetch(`${NEXT_URL}/api/user`);
+        const res = await fetch(`${NEXT_URL}/api/user`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${api_token}`,
+            },
+        });
 
         const data = await res.json();
 
