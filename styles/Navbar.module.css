@@ -52,11 +52,11 @@
     #navbar ul {
         flex-direction: column;
         align-items: center;
-        width: 50%;
+        width: 100%;
     }
 
     #navbar ul li {
-        width: 98vw;
+        width: 98%;
         border-bottom: 1px rgba(202, 202, 202, 0.2) solid;
         text-align: center;
         padding-bottom: 0.5rem;
