@@ -36,7 +36,7 @@ export async function getServerSideProps({ req }) {
             await supabase
                 .from("videos")
                 .select("*")
-                .order("id", { ascending: true })
+                .order("id", { ascending: false })
         ).data || [];
     const ids = [];
 
