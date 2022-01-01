@@ -13,7 +13,6 @@ export default function DashboardPage({ data }) {
 
     useEffect(() => {
         if (!data) {
-            setTimeout(300);
             router.push("/account/signup");
         }
     }, []);
