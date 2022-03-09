@@ -1,0 +1,13 @@
+{
+    "name": "Edulink",
+    "short_name": "Edulink",
+    "start_url": "/",
+    "display": "standalone",
+    "orientation": "portrait-primary",
+    "icons": [
+      {  
+      "src": "./public/favicon.ico",
+      "type": "image/ico", "sizes": "50x50"
+        }
+    ]
+  }
