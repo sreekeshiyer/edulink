@@ -1,6 +1,7 @@
 import "../styles/globals.css";
 import "@fortawesome/fontawesome-free/css/all.css";
 import { AuthProvider } from "@/context/AuthContext";
+import { useEffect } from "react";
 
 function MyApp({ Component, pageProps }) {
     useEffect(() => {
