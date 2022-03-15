@@ -7,7 +7,6 @@ export default function Layout(props) {
             <Head>
                     <title>{props.title}</title>
             <meta charSet="utf-8" />
-            <script defer data-domain="edulink-sreekeshiyer.vercel.app" src="https://plausible.io/js/plausible.js"></script>
             <meta name="description" content="Edulink is a video platform that brings the best learning content from YouTube. It aims at creating an ecosystem for students and budding developers, providing them the best content without involving the YouTube algorithm."></meta>
             <meta property="og:title" content={props.title} key="ogtitle" />
                 <link rel="icon" href="/favicon.ico" />
