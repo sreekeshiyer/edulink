@@ -1,6 +1,5 @@
 import Head from "next/head";
 import Navbar from "./Navbar";
-import Script from "next/script";
 
 export default function Layout(props) {
     return (
@@ -14,13 +13,11 @@ export default function Layout(props) {
             </Head>
             <Navbar current={props.current} />
             <main>{props.children}</main>
-            <Script>
-
+            <script>
     Notification.requestPermission(function(status) {
         console.log('Notification permission status:', status);
     });
-
-            </Script>
+            </script>
         </div>
     );
 }
