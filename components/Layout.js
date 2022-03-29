@@ -13,11 +13,6 @@ export default function Layout(props) {
             </Head>
             <Navbar current={props.current} />
             <main>{props.children}</main>
-<script>
-                {Notification.requestPermission(function (status) {
-                    console.log("Notification permission status:", status);
-                })}
-            </script>
         </div>
     );
 }
