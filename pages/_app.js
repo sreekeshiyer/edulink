@@ -4,6 +4,21 @@ import { AuthProvider } from "@/context/AuthContext";
 import { useEffect } from "react";
 
 function MyApp({ Component, pageProps }) {
+    function urlBase64ToUint8Array(base64String) {
+        const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
+        const base64 = (base64String + padding)
+            .replace(/\-/g, "+")
+            .replace(/_/g, "/");
+
+        const rawData = window.atob(base64);
+        const outputArray = new Uint8Array(rawData.length);
+
+        for (let i = 0; i < rawData.length; ++i) {
+            outputArray[i] = rawData.charCodeAt(i);
+        }
+        return outputArray;
+    }
+
     useEffect(() => {
         if ("serviceWorker" in navigator) {
             window.addEventListener("load", function () {
@@ -23,26 +38,32 @@ function MyApp({ Component, pageProps }) {
                 );
             });
 
-            window.addEventListener("push", (e) => {
-                const payload = JSON.parse(e.data.text());
-                console.log(payload);
-                e.waitUntil(
-                    self.registration.showNotification(payload.title, {
-                        body: payload.body,
+            window.addEventListener("activate", (event) => {
+                console.log("service worker activated", event);
+
+                console.log("window", window);
+                window.registration.pushManager
+                    .subscribe({
+                        userVisibleOnly: true,
+                        applicationServerKey:
+                            urlBase64ToUint8Array(publicVapidKey),
                     })
-                );
+                    .then((subscription) => {
+                        console.log("subscription", subscription);
+                    })
+                    .catch((err) => {
+                        console.log("error in subscribing to push", err);
+                    });
+            });
+
+            window.addEventListener("push", (e) => {
+                const data = e.data.json();
+                console.log("Push Recieved...");
+                window.registration.showNotification(data.title, {
+                    body: "Notification Received",
+                });
             });
         }
-
-        window.addEventListener("push", (e) => {
-            const payload = JSON.parse(e.data.text());
-            console.log(payload);
-            e.waitUntil(
-                self.registration.showNotification(payload.title, {
-                    body: payload.body,
-                })
-            );
-        });
     });
     return (
         <AuthProvider>
