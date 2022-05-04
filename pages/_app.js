@@ -59,14 +59,17 @@ function MyApp({ Component, pageProps }) {
     }, []);
 
     useEffect(() => {
-        window.addEventListener("push", (e) => {
+        self.addEventListener("push", (e) => {
             const data = e.data.json();
             console.log("Push Recieved...");
-            window.registration.showNotification(data.title, {
-                body: "Notification Received",
-            });
+
+            e.waitUntil(
+                self.registration.showNotification(data.title, {
+                    body: data.body,
+                })
+            );
         });
-    }, []);
+    }, [self]);
     return (
         <AuthProvider>
             <Component {...pageProps} />
