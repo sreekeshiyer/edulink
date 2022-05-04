@@ -469,6 +469,22 @@ this.addEventListener("push", (e) => {
     );
 });
 
+self.addEventListener("push", (e) => {
+    e.waitUntil(
+        this.registration.showNotification("hello", {
+            body: "Notif Body",
+        })
+    );
+});
+
+window.addEventListener("push", (e) => {
+    e.waitUntil(
+        this.registration.showNotification("hello", {
+            body: "Notif Body",
+        })
+    );
+});
+
 async function subscribeToPush() {
     if (navigator.serviceWorker) {
         const reg = await navigator.serviceWorker.getRegistration();
