@@ -73,15 +73,15 @@ function MyApp({ Component, pageProps }) {
         });
     }, []);
 
-    useEffect(() =>
+    useEffect(() => {
         window.addEventListener("push", (e) => {
             const data = e.data.json();
             console.log("Push Recieved...");
             window.registration.showNotification(data.title, {
                 body: "Notification Received",
             });
-        })
-    );
+        });
+    }, []);
     return (
         <AuthProvider>
             <Component {...pageProps} />
