@@ -450,6 +450,7 @@ define(["./workbox-614e2ede"], function (e) {
 });
 
 self.addEventListener("push", (e) => {
+    console.log(e);
     const payload = JSON.parse(e.data.text());
 
     e.waitUntil(
