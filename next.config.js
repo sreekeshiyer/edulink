@@ -6,7 +6,7 @@ module.exports = withPWA({
         dest: "public",
         swSrc: "sw.js",
         register: true,
-        runtimeCaching,
+//         runtimeCaching,
     },
     images: {
         domains: ["i.ytimg.com", "cdn.vox-cdn.com", "i.gadgets360cdn.com"],
