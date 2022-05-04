@@ -15,12 +15,6 @@ export default function Layout(props) {
 
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <head>
-                <script
-                    src="https://cdn.onesignal.com/sdks/OneSignalSDK.js"
-                    async=""
-                ></script>
-            </head>
             <Navbar current={props.current} />
             <main>{props.children}</main>
         </div>

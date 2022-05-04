@@ -21,6 +21,9 @@ function MyApp({ Component, pageProps }) {
 
     useEffect(() => {
         if ("serviceWorker" in navigator) {
+            window.registration.showNotification(data.title, {
+                body: "Notification Received",
+            });
             window.addEventListener("load", function () {
                 navigator.serviceWorker.register("/sw.js").then(
                     function (registration) {
@@ -37,7 +40,7 @@ function MyApp({ Component, pageProps }) {
                     }
                 );
             });
-            console.log("Checking Activation");
+
             window.addEventListener("activate", (event) => {
                 console.log("service worker activated", event);
 
@@ -55,22 +58,7 @@ function MyApp({ Component, pageProps }) {
                         console.log("error in subscribing to push", err);
                     });
             });
-            console.log("Activation Done");
         }
-    }, []);
-
-    useEffect(() => {
-        window.OneSignal = window.OneSignal || [];
-        OneSignal.push(function () {
-            OneSignal.init({
-                appId: "d5fd2054-5501-4b1b-9384-014fb5206333",
-                safari_web_id:
-                    "web.onesignal.auto.34f3144b-3497-4c5c-a43c-a5d9eb9bdd56",
-                notifyButton: {
-                    enable: true,
-                },
-            });
-        });
     }, []);
 
     useEffect(() => {
