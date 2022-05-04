@@ -59,6 +59,7 @@ function MyApp({ Component, pageProps }) {
     }, []);
 
     useEffect(() => {
+        console.log(1);
         self.addEventListener("push", (e) => {
             const data = e.data.json();
             console.log("Push Recieved...");
@@ -69,7 +70,7 @@ function MyApp({ Component, pageProps }) {
                 })
             );
         });
-    }, []);
+    });
     return (
         <AuthProvider>
             <Component {...pageProps} />
