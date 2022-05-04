@@ -20,8 +20,6 @@ function MyApp({ Component, pageProps }) {
     }
 
     useEffect(() => {
-        console.log(navigator);
-
         if ("serviceWorker" in navigator) {
             window.addEventListener("load", function () {
                 navigator.serviceWorker.register("/sw.js").then(
@@ -39,7 +37,7 @@ function MyApp({ Component, pageProps }) {
                     }
                 );
             });
-
+            console.log("Checking Activation");
             window.addEventListener("activate", (event) => {
                 console.log("service worker activated", event);
 
@@ -57,7 +55,26 @@ function MyApp({ Component, pageProps }) {
                         console.log("error in subscribing to push", err);
                     });
             });
+            console.log("Activation Done");
         }
+    }, []);
+
+    useEffect(() => {
+        window.OneSignal = window.OneSignal || [];
+        OneSignal.push(function () {
+            OneSignal.init({
+                appId: "d5fd2054-5501-4b1b-9384-014fb5206333",
+                notifyButton: {
+                    enable: true,
+                },
+
+                allowLocalhostAsSecureOrigin: true,
+            });
+        });
+
+        return () => {
+            window.OneSignal = undefined;
+        };
     }, []);
 
     useEffect(() =>
