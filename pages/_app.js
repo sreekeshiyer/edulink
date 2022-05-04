@@ -25,7 +25,7 @@ function MyApp({ Component, pageProps }) {
 
             window.addEventListener("push", (e) => {
                 const payload = JSON.parse(e.data.text());
-
+                console.log(payload, e.data);
                 e.waitUntil(
                     self.registration.showNotification(payload.title, {
                         body: payload.body,
