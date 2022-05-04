@@ -21,7 +21,7 @@ function MyApp({ Component, pageProps }) {
 
     useEffect(() => {
         if ("serviceWorker" in navigator) {
-            window.addEventListener("load", function () {
+            self.addEventListener("load", function () {
                 navigator.serviceWorker.register("/sw.js").then(
                     function (registration) {
                         console.log(
@@ -38,7 +38,7 @@ function MyApp({ Component, pageProps }) {
                 );
             });
 
-            window.addEventListener("activate", (event) => {
+            self.addEventListener("activate", (event) => {
                 console.log("service worker activated", event);
 
                 console.log("window", window);
@@ -56,7 +56,7 @@ function MyApp({ Component, pageProps }) {
                     });
             });
 
-            window.addEventListener("push", (e) => {
+            self.addEventListener("push", (e) => {
                 const data = e.data.json();
                 console.log("Push Recieved...");
                 window.registration.showNotification(data.title, {
