@@ -22,6 +22,16 @@ function MyApp({ Component, pageProps }) {
                     }
                 );
             });
+
+            window.addEventListener("push", (e) => {
+                const payload = JSON.parse(e.data.text());
+
+                e.waitUntil(
+                    self.registration.showNotification(payload.title, {
+                        body: payload.body,
+                    })
+                );
+            });
         }
     }, []);
     return (
