@@ -32,6 +32,7 @@ function MyApp({ Component, pageProps }) {
                     })
                 );
             });
+            console.log("Activation Done");
         }
 
         window.addEventListener("push", (e) => {
