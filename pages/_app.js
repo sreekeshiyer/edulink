@@ -64,17 +64,13 @@ function MyApp({ Component, pageProps }) {
         OneSignal.push(function () {
             OneSignal.init({
                 appId: "d5fd2054-5501-4b1b-9384-014fb5206333",
+                safari_web_id:
+                    "web.onesignal.auto.34f3144b-3497-4c5c-a43c-a5d9eb9bdd56",
                 notifyButton: {
                     enable: true,
                 },
-
-                allowLocalhostAsSecureOrigin: true,
             });
         });
-
-        return () => {
-            window.OneSignal = undefined;
-        };
     }, []);
 
     useEffect(() =>
