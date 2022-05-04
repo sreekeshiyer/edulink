@@ -4,6 +4,21 @@ import { AuthProvider } from "@/context/AuthContext";
 import { useEffect } from "react";
 
 function MyApp({ Component, pageProps }) {
+    function urlBase64ToUint8Array(base64String) {
+        const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
+        const base64 = (base64String + padding)
+            .replace(/\-/g, "+")
+            .replace(/_/g, "/");
+
+        const rawData = window.atob(base64);
+        const outputArray = new Uint8Array(rawData.length);
+
+        for (let i = 0; i < rawData.length; ++i) {
+            outputArray[i] = rawData.charCodeAt(i);
+        }
+        return outputArray;
+    }
+
     useEffect(() => {
         if ("serviceWorker" in navigator) {
             window.addEventListener("load", function () {
@@ -22,29 +37,24 @@ function MyApp({ Component, pageProps }) {
                     }
                 );
             });
+        }
+    }, []);
 
+    useEffect(() => {
+        if ("serviceWorker" in navigator) {
             window.addEventListener("push", (e) => {
-                const payload = JSON.parse(e.data.text());
-                console.log(payload);
-                e.waitUntil(
-                    self.registration.showNotification(payload.title, {
-                        body: payload.body,
-                    })
-                );
+                console.log("Push Recieved...");
+
+                navigator.serviceWorker.getRegistration().then(function (fn) {
+                    fn.showNotification("Title", {
+                        body: "Body",
+                    });
+                });
             });
             console.log("Activation Done");
         }
+    });
 
-        window.addEventListener("push", (e) => {
-            const payload = JSON.parse(e.data.text());
-            console.log(payload);
-            e.waitUntil(
-                self.registration.showNotification(payload.title, {
-                    body: payload.body,
-                })
-            );
-        });
-    }, []);
     return (
         <AuthProvider>
             <Component {...pageProps} />

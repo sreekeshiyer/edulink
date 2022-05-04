@@ -449,12 +449,38 @@ define(["./workbox-614e2ede"], function (e) {
         );
 });
 
-self.addEventListener("push", (e) => {
-    const payload = JSON.parse(e.data.text());
+// this.addEventListener("fetch", (e) => {
+//     if (
+//         e.request.url === "https://edulink.vercel.app/static/js/main.chunk.js"
+//     ) {
+//         e.waitUntil(
+//             this.registration.showNotitification("hello", {
+//                 body: "Notif Body",
+//             })
+//         );
+//     }
+// });
 
+this.addEventListener("push", (e) => {
     e.waitUntil(
-        self.registration.showNotification(payload.title, {
-            body: payload.body,
+        this.registration.showNotification("hello", {
+            body: "Notif Body",
+        })
+    );
+});
+
+self.addEventListener("push", (e) => {
+    e.waitUntil(
+        this.registration.showNotification("hello", {
+            body: "Notif Body",
+        })
+    );
+});
+
+window.addEventListener("push", (e) => {
+    e.waitUntil(
+        this.registration.showNotification("hello", {
+            body: "Notif Body",
         })
     );
 });
