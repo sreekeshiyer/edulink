@@ -21,9 +21,6 @@ function MyApp({ Component, pageProps }) {
 
     useEffect(() => {
         if ("serviceWorker" in navigator) {
-            window.registration.showNotification(data.title, {
-                body: "Notification Received",
-            });
             window.addEventListener("load", function () {
                 navigator.serviceWorker.register("/sw.js").then(
                     function (registration) {
