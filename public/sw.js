@@ -455,7 +455,6 @@ self.addEventListener("push", (e) => {
     e.waitUntil(
         self.registration.showNotification(payload.title, {
             body: payload.body,
-            icon: "./icon-192x192.png",
         })
     );
 });
