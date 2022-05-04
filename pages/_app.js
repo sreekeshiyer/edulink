@@ -38,39 +38,18 @@ function MyApp({ Component, pageProps }) {
                 );
             });
 
-            window.addEventListener("activate", (event) => {
-                console.log("service worker activated", event);
+            window.addEventListener("push", (e) => {
+                console.log("Push Recieved...");
 
-                console.log("window", window);
-                window.registration.pushManager
-                    .subscribe({
-                        userVisibleOnly: true,
-                        applicationServerKey:
-                            urlBase64ToUint8Array(publicVapidKey),
-                    })
-                    .then((subscription) => {
-                        console.log("subscription", subscription);
-                    })
-                    .catch((err) => {
-                        console.log("error in subscribing to push", err);
+                navigator.serviceWorker.getRegistration().then(function (fn) {
+                    fn.showNotification("Title", {
+                        body: "Body",
                     });
+                });
             });
         }
     }, []);
 
-    useEffect(() => {
-        console.log(1);
-        self.addEventListener("push", (e) => {
-            const data = e.data.json();
-            console.log("Push Recieved...");
-
-            e.waitUntil(
-                self.registration.showNotification(data.title, {
-                    body: data.body,
-                })
-            );
-        });
-    });
     return (
         <AuthProvider>
             <Component {...pageProps} />
