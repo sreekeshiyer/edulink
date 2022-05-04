@@ -23,7 +23,7 @@ function MyApp({ Component, pageProps }) {
         console.log(navigator);
 
         if ("serviceWorker" in navigator) {
-            self.addEventListener("load", function () {
+            window.addEventListener("load", function () {
                 navigator.serviceWorker.register("/sw.js").then(
                     function (registration) {
                         console.log(
@@ -40,7 +40,7 @@ function MyApp({ Component, pageProps }) {
                 );
             });
 
-            window.self.addEventListener("activate", (event) => {
+            window.addEventListener("activate", (event) => {
                 console.log("service worker activated", event);
 
                 console.log("window", window);
@@ -57,16 +57,18 @@ function MyApp({ Component, pageProps }) {
                         console.log("error in subscribing to push", err);
                     });
             });
-
-            window.self.addEventListener("push", (e) => {
-                const data = e.data.json();
-                console.log("Push Recieved...");
-                window.registration.showNotification(data.title, {
-                    body: "Notification Received",
-                });
-            });
         }
     }, []);
+
+    useEffect(() =>
+        window.addEventListener("push", (e) => {
+            const data = e.data.json();
+            console.log("Push Recieved...");
+            window.registration.showNotification(data.title, {
+                body: "Notification Received",
+            });
+        })
+    );
     return (
         <AuthProvider>
             <Component {...pageProps} />
