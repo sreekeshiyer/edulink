@@ -37,7 +37,11 @@ function MyApp({ Component, pageProps }) {
                     }
                 );
             });
+        }
+    }, []);
 
+    useEffect(() => {
+        if ("serviceWorker" in navigator) {
             window.addEventListener("push", (e) => {
                 console.log("Push Recieved...");
 
@@ -48,7 +52,7 @@ function MyApp({ Component, pageProps }) {
                 });
             });
         }
-    }, []);
+    });
 
     return (
         <AuthProvider>
