@@ -7,7 +7,7 @@ export default async function handler(req, res) {
     if (req.headers["authorization"] === `Bearer ${api_token}`) {
         if (req.method === "GET") {
             if (!req.headers.cookie) {
-                res.status(403).json({ message: "No User found" });
+                res.status(200).json({ message: "No User found" });
                 return;
             }
 
@@ -23,7 +23,7 @@ export default async function handler(req, res) {
             if (user.status === 200) {
                 res.status(200).json({ user: user.data[0] });
             } else {
-                res.status(403).json({ message: "User forbidden" });
+                res.status(403).json({ message: "User Invalid" });
             }
         } else {
             res.setHeader("Allow", ["GET"]);
