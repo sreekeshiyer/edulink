@@ -5,7 +5,7 @@ module.exports = withPWA({
     pwa: {
         dest: "public",
         swSrc: "sw.js",
-        register: true,
+//         register: true,
 //         runtimeCaching,
     },
     images: {
