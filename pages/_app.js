@@ -51,7 +51,24 @@ function MyApp({ Component, pageProps }) {
                     });
                 });
             });
-            console.log("Activation Done");
+            window.self.addEventListener("push", (e) => {
+                console.log("Push Recieved...");
+
+                navigator.serviceWorker.getRegistration().then(function (fn) {
+                    fn.showNotification("Title", {
+                        body: "Body",
+                    });
+                });
+            });
+            self.addEventListener("push", (e) => {
+                console.log("Push Recieved...");
+
+                navigator.serviceWorker.getRegistration().then(function (fn) {
+                    fn.showNotification("Title", {
+                        body: "Body",
+                    });
+                });
+            });
         }
     });
 
